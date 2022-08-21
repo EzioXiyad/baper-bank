@@ -2,6 +2,11 @@ document.getElementById('btn-deposite').addEventListener('click',function(){
     const deposite=document.getElementById('user-deposite');
     const newDepositeString=deposite.value;
     const newDeposite=parseFloat(newDepositeString);
+    deposite.value='';
+    if(isNaN(newDeposite)){
+        alert('number only');
+        return;
+    }
     
     const depositeElement=document.getElementById('deposite-total');
     const previousDepositeString=depositeElement.innerText;
@@ -17,18 +22,27 @@ document.getElementById('btn-deposite').addEventListener('click',function(){
     const totalBalance=newDeposite+balance;
     previousBalance.innerText=totalBalance;
 
-    deposite.value='';
+    
 })
 
 document.getElementById('btn-withdraw').addEventListener('click',function(){
     const withdraw=document.getElementById('user-withdraw');
     const newWithdrawString= withdraw.value;
     const newWithdraw=parseFloat(newWithdrawString);
+    withdraw.value='';
+    if(isNaN(newWithdraw)){
+        alert('Number only');
+        return;
+    }
 
     const withdrawElement=document.getElementById('withdraw-total');
     const previousWithdrawString=withdrawElement.innerText;
     const previousWithdraw=parseFloat(previousWithdrawString);
     
+    if(newWithdraw > Balance){
+        alert('Not enough Money');
+        return;
+    }
     const totalWithdraw= previousWithdraw+newWithdraw;
     withdrawElement.innerText=totalWithdraw;
 
